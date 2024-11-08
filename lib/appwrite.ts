@@ -109,3 +109,31 @@ export async function getCurrentUser() {
     return null;
   }
 }
+// Get all video Posts
+export async function getAllPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videosCollectionId
+    );
+
+    return posts.documents;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+}
+
+// Get latest created video posts
+export async function getLatestPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videosCollectionId,
+      [Query.orderDesc("$createdAt"), Query.limit(7)]
+    );
+
+    return posts.documents;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+}

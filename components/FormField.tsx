@@ -6,7 +6,7 @@ import { icons } from "../constants";
 interface FormFieldProps extends TextInputProps {
   title: string;
   value: string;
-  placeholder: string;
+  placeholder?: string;
   handleChangeText: (text: string) => void;
   otherStyles?: string;
 }

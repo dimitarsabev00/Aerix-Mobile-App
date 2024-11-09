@@ -5,6 +5,7 @@ import EmptyState from "./EmptyState";
 import Trending from "./Trending";
 import VideoCard from "./VideoCard";
 import InfoBox from "./InfoBox";
+import Loader from "./Loader";
 
 export {
   CustomButton,
@@ -14,4 +15,5 @@ export {
   Trending,
   VideoCard,
   InfoBox,
+  Loader,
 };

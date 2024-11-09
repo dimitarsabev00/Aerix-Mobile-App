@@ -4,7 +4,7 @@ import { View, Text, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { images } from "../constants";
-import { CustomButton } from "../components";
+import { CustomButton, Loader } from "../components";
 import { useGlobalContext } from "../context/GlobalProvider";
 
 const Welcome = () => {
@@ -14,6 +14,8 @@ const Welcome = () => {
 
   return (
     <SafeAreaView className="bg-primary h-full">
+      <Loader isLoading={loading} />
+
       <ScrollView
         contentContainerStyle={{
           height: "100%",

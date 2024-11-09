@@ -139,18 +139,44 @@ export async function getLatestPosts() {
 }
 
 // Get video posts that matches search query
-export async function searchPosts(query) {
+export async function searchPosts(query: string) {
   try {
     const posts = await databases.listDocuments(
       appwriteConfig.databaseId,
-      appwriteConfig.videoCollectionId,
+      appwriteConfig.videosCollectionId,
       [Query.search("title", query)]
     );
 
     if (!posts) throw new Error("Something went wrong");
 
     return posts.documents;
-  } catch (error) {
+  } catch (error: any) {
+    throw new Error(error);
+  }
+}
+
+// Get video posts created by user
+export async function getUserPosts(userId: string) {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videosCollectionId,
+      [Query.equal("creator", userId)]
+    );
+
+    return posts.documents;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+}
+
+// Sign Out
+export async function signOut() {
+  try {
+    const session = await account.deleteSession("current");
+
+    return session;
+  } catch (error: any) {
     throw new Error(error);
   }
 }
